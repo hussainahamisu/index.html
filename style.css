@@ -1,0 +1,241 @@
+/* --- Reset & Base Variables --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+:root {
+    --bg-dark: #121214;
+    --card-bg: #1e1e24;
+    --accent: #4f46e5;
+    --accent-hover: #4338ca;
+    --text-main: #f3f4f6;
+    --text-muted: #9ca3af;
+    --border: #2d2d34;
+}
+
+body {
+    background-color: var(--bg-dark);
+    color: var(--text-main);
+    line-height: 1.6;
+}
+
+/* --- Global Navbar --- */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 70px;
+    background-color: rgba(18, 18, 20, 0.95);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 5%;
+    border-bottom: 1px solid var(--border);
+    z-index: 1000;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--accent);
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 1.5rem;
+}
+
+.nav-links a {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.95rem;
+    transition: color 0.3s ease;
+}
+
+.nav-links a:hover, 
+.nav-links a.active {
+    color: var(--text-main);
+    border-bottom: 2px solid var(--accent);
+    padding-bottom: 4px;
+}
+
+/* --- App View Framework (Routing Layout) --- */
+.content-wrapper {
+    margin-top: 70px;
+    min-height: calc(100vh - 70px);
+    padding: 3rem 5%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.page {
+    display: none; /* Controlled by JS router */
+    width: 100%;
+    max-width: 1000px;
+    animation: fadeIn 0.4s ease forwards;
+}
+
+.page.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* --- Section Stylings --- */
+h2 {
+    font-size: 2.2rem;
+    margin-bottom: 1.5rem;
+    position: relative;
+    display: inline-block;
+}
+
+h2::after {
+    content: '';
+    position: absolute;
+    bottom: -6px;
+    left: 0;
+    width: 40px;
+    height: 3px;
+    background-color: var(--accent);
+}
+
+p {
+    color: var(--text-muted);
+    margin-bottom: 1.2rem;
+    font-size: 1.1rem;
+}
+
+.card {
+    background-color: var(--card-bg);
+    border: 1px solid var(--border);
+    padding: 2rem;
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
+}
+
+.card h3 { margin-bottom: 0.5rem; }
+.subtitle { color: var(--accent); margin-bottom: 0.25rem; font-weight: 600; }
+.date { font-size: 0.9rem; margin-bottom: 1rem; italic; }
+
+/* Button Styles */
+.btn {
+    display: inline-block;
+    background-color: var(--accent);
+    color: var(--text-main);
+    padding: 0.75rem 1.7rem;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: 600;
+    transition: background 0.3s;
+}
+.btn:hover { background-color: var(--accent-hover); }
+.small-btn { padding: 0.5rem 1rem; font-size: 0.9rem; margin-top: 1rem; }
+
+/* --- Page Specific Stylings --- */
+
+/* Home Layout with me.png background image */
+#home {
+    background: linear-gradient(rgba(18,18,20,0.85), rgba(18,18,20,0.85)), url('me.png');
+    background-size: cover;
+    background-position: center;
+    height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    border-radius: 12px;
+    padding: 2rem;
+}
+.hero-content h1 { font-size: 3.5rem; margin-bottom: 1rem; }
+
+/* About Layout with about.png image */
+.two-column {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 3rem;
+    align-items: center;
+}
+.img-container img {
+    width: 100%;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    object-fit: cover;
+}
+
+/* Skills Layout (No icons) */
+.skills-grid, .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+.skill-card {
+    background: var(--card-bg);
+    padding: 1.5rem;
+    border-left: 4px solid var(--accent);
+    border-radius: 4px;
+}
+.skill-card h4 { margin-bottom: 0.5rem; font-size: 1.2rem; }
+
+/* Certifications View */
+.cert-container {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 2rem;
+    background: var(--card-bg);
+    padding: 2rem;
+    border-radius: 8px;
+    align-items: center;
+}
+.cert-img-box img {
+    width: 100%;
+    border-radius: 4px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+}
+
+/* Tools Stack List */
+.stack-list {
+    list-style: none;
+    margin-top: 1.5rem;
+}
+.stack-list li {
+    background: var(--card-bg);
+    padding: 1rem;
+    margin-bottom: 0.75rem;
+    border-radius: 6px;
+    border: 1px solid var(--border);
+}
+
+/* Approach / Philosophy Quote */
+blockquote {
+    font-style: italic;
+    font-size: 1.4rem;
+    color: var(--accent);
+    border-left: 3px solid var(--text-muted);
+    padding-left: 1rem;
+    margin: 1.5rem 0;
+}
+
+/* Contact Links text */
+.contact-details p { font-size: 1.2rem; margin-bottom: 0.8rem; }
+.contact-details a { color: var(--accent); text-decoration: none; }
+.contact-details a:hover { text-decoration: underline; }
+
+/* --- Responsive Adjustments --- */
+@media (max-width: 768px) {
+    .navbar { flex-direction: column; height: auto; padding: 1rem; }
+    .nav-links { flex-wrap: wrap; justify-content: center; gap: 0.8rem; margin-top: 0.5rem; }
+    .content-wrapper { margin-top: 120px; }
+    .two-column, .cert-container { grid-template-columns: 1fr; text-align: center; }
+    .hero-content h1 { font-size: 2.2rem; }
+}
